@@ -1,0 +1,5 @@
+#import <Foundation/Foundation.h>
+@interface PodsDummy_Pods_ContactsFirebaseApp0_ContactsFirebaseApp0UITests : NSObject
+@end
+@implementation PodsDummy_Pods_ContactsFirebaseApp0_ContactsFirebaseApp0UITests
+@end

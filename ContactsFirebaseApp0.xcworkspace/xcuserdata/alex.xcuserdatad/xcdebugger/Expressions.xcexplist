@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "-[ViewController viewDidLoad]:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[[[self firestore] collectionWithPath:@&quot;Contacts&quot;] documentWithAutoID]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__29-[ViewController viewDidLoad]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[document documentID]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "__25-[ViewController Search:]_block_invoke:ViewController.m">
+         <PersistentStrings>
+            <PersistentString
+               value = "[self found]">
+            </PersistentString>
+            <PersistentString
+               value = "[contactDictionary id]">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

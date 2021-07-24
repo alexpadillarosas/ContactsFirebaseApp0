@@ -1,0 +1,6 @@
+framework module Pods_ContactsFirebaseApp0_ContactsFirebaseApp0UITests {
+  umbrella header "Pods-ContactsFirebaseApp0-ContactsFirebaseApp0UITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
