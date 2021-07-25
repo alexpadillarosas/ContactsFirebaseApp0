@@ -216,19 +216,24 @@
     
     //get the ID typed by the user
     NSString* contactId = [[self idTextField] text];
-    
+
     if( [self contactHasAValidId:contactId] ){
-        Contact* contactFound = [self searchContactById:contactId];
-        
-        if( contactFound != nil ){
-            [[self nameTextField] setText:[contactFound name]];
-            [[self emailTextField] setText:[contactFound email]];
-            [[self phoneTextField] setText:[contactFound phone]];
-            [[self positionTextField] setText:[contactFound position]];
-        }else{
-            [self showUIAlertWithMessage:@"Contact Id not found" andTitle:@"Contact Search"];
-        }
-        
+        /**
+                        If we want to get the contact object returned from a method that in turns call an asynchronous method( All calls to Firestore are asynchronous, and it makes sense since the app won't stop waiting for the result)
+                        we will need to pass a block containing the class we want to return from that method, this time we named this block: completeBlock
+                        See the implementation of the method to know how to work with it.
+         */
+        [self searchContactById:contactId completeBlock:^(Contact *contact) {
+            if( contact != nil ){
+                [[self nameTextField] setText:[contact name]];
+                [[self emailTextField] setText:[contact email]];
+                [[self phoneTextField] setText:[contact phone]];
+                [[self positionTextField] setText:[contact position]];
+            }else{
+                [self showUIAlertWithMessage:@"Contact Id not found" andTitle:@"Contact Search"];
+            }
+        }];
+    
     }else{
         [self showUIAlertWithMessage:@"You must provide the contact ID to search for" andTitle:@"Contact Search Failed"];
         [[self idTextField] setText:@""];
@@ -238,15 +243,17 @@
 
 /**
     Given a contactId this method will search Contacts collection to retrieve the correspondent document
-    Returns nil if the contact was not found in the database collection
+    What we're trying to do is asynchronous, so to return the contactFound we will have to add add a completion block parameter to our searchContactById method which is called when the inner completion handler is called
+ 
  */
--(Contact* ) searchContactById: contactId{
+-(void) searchContactById: (NSString* ) contactId completeBlock: (void(^)(Contact *)) completeBlock{
     
     __block Contact *contactFound;
     
     FIRDocumentReference *contactReference = [[[self firestore] collectionWithPath:@"Contacts"] documentWithPath:contactId];
     
     [contactReference getDocumentWithCompletion:^(FIRDocumentSnapshot * _Nullable snapshot, NSError * _Nullable error) {
+        NSLog(@"snapshot: %@", snapshot);
         if([snapshot exists]){
 
             NSDictionary<NSString *,id> *contactDictionary = [snapshot data];
@@ -256,13 +263,19 @@
             contactFound = [[Contact alloc] initWithDictionary:contactDictionary];
             [contactFound setAutoId:idFound];
 
-            NSLog(@"contact found");
+            if(completeBlock){
+                NSLog(@"contact found in complete block: %@", contactFound);
+                completeBlock(contactFound);
+            }
+            
+            NSLog(@"contact found: %@", contactFound);
 
         }else{
+//            completion(nil);
             NSLog(@"Document does not exist");
         }
     }];
-    return contactFound;
+        NSLog(@"abc: " );
 }
 
 /**
@@ -279,7 +292,7 @@
 }
 
 
-- (IBAction)didPressDelete:(id)sender {
+-(IBAction)didPressDelete:(id)sender {
     
     //get the ID typed by the user
     NSString* contactId = [[self idTextField] text];
@@ -337,7 +350,7 @@
         }];
 }
 
-- (IBAction)didPressUpdate:(id)sender {
+-(IBAction)didPressUpdate:(id)sender {
     
     //get the ID typed by the user
     NSString* contactId = [[self idTextField] text];
@@ -369,7 +382,7 @@
             [self showUIAlertWithMessage:invalidFieldsMessage andTitle:@"Invalid Fields"];
         }
     }else{
-        [self showUIAlertWithMessage:@"You must provide the contact ID of the contact to update" andTitle:@"Update"];
+        [self showUIAlertWithMessage:@"You must provide the contact ID of the contact to delete" andTitle:@"Update"];
     }
     
 }

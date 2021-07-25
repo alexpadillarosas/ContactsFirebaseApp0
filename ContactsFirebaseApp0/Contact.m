@@ -63,5 +63,11 @@
     return self;
 }
 
+-(NSString*) description{
+    
+    return  [NSString stringWithFormat:@"name: %@ email: %@ phone: %@ position: %@", _name, _email, _phone, _position] ;
+
+}
+
 
 @end
