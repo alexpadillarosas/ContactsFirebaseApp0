@@ -19,8 +19,8 @@
 		FA3F6FE0269AE1080025F498 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F6FDF269AE1080025F498 /* main.m */; };
 		FA3F6FEA269AE1080025F498 /* ContactsFirebaseApp0Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F6FE9269AE1080025F498 /* ContactsFirebaseApp0Tests.m */; };
 		FA3F6FF5269AE1080025F498 /* ContactsFirebaseApp0UITests.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F6FF4269AE1080025F498 /* ContactsFirebaseApp0UITests.m */; };
-		FA3F7003269AE1A10025F498 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA3F7002269AE1A10025F498 /* GoogleService-Info.plist */; };
 		FA3F70DA26A42A080025F498 /* Contact.m in Sources */ = {isa = PBXBuildFile; fileRef = FA3F70D926A42A080025F498 /* Contact.m */; };
+		FA76AF4526BBDD2100E0DFE1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FA76AF4426BBDD2100E0DFE1 /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,9 +68,9 @@
 		FA3F6FF0269AE1080025F498 /* ContactsFirebaseApp0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ContactsFirebaseApp0UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA3F6FF4269AE1080025F498 /* ContactsFirebaseApp0UITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContactsFirebaseApp0UITests.m; sourceTree = "<group>"; };
 		FA3F6FF6269AE1080025F498 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA3F7002269AE1A10025F498 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FA3F70D826A42A080025F498 /* Contact.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Contact.h; sourceTree = "<group>"; };
 		FA3F70D926A42A080025F498 /* Contact.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Contact.m; sourceTree = "<group>"; };
+		FA76AF4426BBDD2100E0DFE1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Documents/iOS/Firebase/GoogleSerciveInfoFiles/app0/GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,7 +149,7 @@
 		FA3F6FCC269AE1080025F498 /* ContactsFirebaseApp0 */ = {
 			isa = PBXGroup;
 			children = (
-				FA3F7002269AE1A10025F498 /* GoogleService-Info.plist */,
+				FA76AF4426BBDD2100E0DFE1 /* GoogleService-Info.plist */,
 				FA3F6FCD269AE1080025F498 /* AppDelegate.h */,
 				FA3F6FCE269AE1080025F498 /* AppDelegate.m */,
 				FA3F6FD0269AE1080025F498 /* SceneDelegate.h */,
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA3F6FDD269AE1080025F498 /* LaunchScreen.storyboard in Resources */,
-				FA3F7003269AE1A10025F498 /* GoogleService-Info.plist in Resources */,
+				FA76AF4526BBDD2100E0DFE1 /* GoogleService-Info.plist in Resources */,
 				FA3F6FDA269AE1080025F498 /* Assets.xcassets in Resources */,
 				FA3F6FD8269AE1080025F498 /* Main.storyboard in Resources */,
 			);

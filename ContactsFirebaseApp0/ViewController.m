@@ -219,9 +219,9 @@
 
     if( [self contactHasAValidId:contactId] ){
         /**
-                        If we want to get the contact object returned from a method that in turns call an asynchronous method( All calls to Firestore are asynchronous, and it makes sense since the app won't stop waiting for the result)
-                        we will need to pass a block containing the class we want to return from that method, this time we named this block: completeBlock
-                        See the implementation of the method to know how to work with it.
+            If we want to get the contact object returned from a method that in turns call an asynchronous method( All calls to Firestore are asynchronous, and it makes sense since the app won't stop waiting for the result)
+            we will need to pass a block containing the class we want to return from that method, this time we named this block: completeBlock
+            See the implementation of the method to know how to work with it.
          */
         [self searchContactById:contactId completeBlock:^(Contact *contact) {
             if( contact != nil ){
@@ -412,5 +412,57 @@
     }];
     return updated;
 }
+
+
+-(BOOL) contactHasAValidName: (NSString* ) contactName{
+    //remove empty spaces at the beginning and end
+    NSString* trimmedContactName = [contactName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    //check if there is something to search for after removing the empty spaces
+    if([trimmedContactName length] == 0){
+        return NO;
+    }
+    return YES;
+}
+
+- (IBAction)didPressDeleteByName:(id)sender {
+    NSString *name  = [[self nameTextField] text];
+    if([self contactHasAValidName: name ]){
+        
+        FIRCollectionReference *contactsCollectionRef = [[self firestore] collectionWithPath:@"Contacts"];
+        //create a query to play with data already registered in the database
+        FIRQuery *query = [contactsCollectionRef queryWhereField:@"name" isEqualTo:name];
+        //execute the query
+        [query getDocumentsWithCompletion:^(FIRQuerySnapshot * _Nullable snapshot, NSError * _Nullable error) {
+            if(error != nil){
+                NSLog(@"Error retrieving documents: %@", error);
+            }else{
+                NSLog(@"Found %li contacts", [snapshot count]);
+                if([snapshot count] > 0){
+                    //FIRDocumentSnapshot *document = snapshot.documents.firstObject;
+                    for (FIRDocumentSnapshot *document in [snapshot documents]) {
+                        NSLog(@"DocumentId: %@", [document documentID]);
+                        NSDictionary *myContactDictionary = [document data];
+                        NSLog(@"contact: %@", myContactDictionary);
+                        Contact* myContact = [[Contact alloc] initWithDictionary:myContactDictionary];
+                        [myContact setAutoId:[document documentID]];
+                        
+                        [self deleteC:myContact];
+                    }
+                    NSString* message = [NSString stringWithFormat:@"All contacts matching the name: %@ where deleted",name];
+                    [self showUIAlertWithMessage:message andTitle:@"Delete"];
+                }else{
+                    [self showUIAlertWithMessage:@"the contact's name provided does not match any record in the database" andTitle:@"Delete"];
+                }
+            }
+        }];
+    }else{
+        [self showUIAlertWithMessage:@"You must provide the contact's name to delete" andTitle:@"Delete"];
+    }
+    
+    
+}
+
+
+
 
 @end
