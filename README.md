@@ -1,9 +1,7 @@
 # ContactsFirebaseApp0
 
 This is a CRUD app to introduce the usage of Firestore in an ios app using objective-c
-Do not forget to use the code in your own app, as this one points to my own db account.
-
-
+Do not forget to use your own GoogleService-Info.plist file (get it from Firebase : you already registered your app there)
 
 1             |  2
 :-------------------------:|:-------------------------:
