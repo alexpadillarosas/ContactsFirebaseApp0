@@ -5,6 +5,6 @@ Do not forget to use your own GoogleService-Info.plist file (get it from Firebas
 
 1             |  2
 :-------------------------:|:-------------------------:
-<img src="https://user-images.githubusercontent.com/4823319/126861029-622958b0-0dcf-4388-8db6-a0977134076b.png" width="80%" >  |  <img src="https://user-images.githubusercontent.com/4823319/126861087-89808780-e357-4356-9aa5-564edfa3da12.png" width="80%">
+<img src="https://user-images.githubusercontent.com/4823319/160377414-d1048f0e-a868-4135-b690-16cb13581e0b.png" width="80%" >  |  <img src="https://user-images.githubusercontent.com/4823319/160377589-9f31293f-cbd9-48b2-b1ea-15ee41e0992f.png" width="80%">
 
 
